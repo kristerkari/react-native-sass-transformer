@@ -24,3 +24,41 @@ module.exports = {
   }
 };
 ```
+
+## How does it work?
+
+Your `App.scss` file might look like this:
+
+```scss
+.myClass {
+  color: blue;
+}
+.myOtherClass {
+  color: red;
+}
+```
+
+When you import your stylesheet:
+
+```js
+import styles from "./App.scss";
+```
+
+Your imported styles will look like this:
+
+```js
+var styles = {
+  myClass: {
+    color: "blue"
+  },
+  myOtherClass: {
+    color: "red"
+  }
+};
+```
+
+You can then use that style object with an element:
+
+```jsx
+<MyElement style={styles.myClass} />
+```
