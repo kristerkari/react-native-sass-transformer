@@ -12,7 +12,8 @@
   "license": "MIT",
   "files": ["index.js", "README.md"],
   "dependencies": {
-    "css-to-react-native-transform": "^1.0.3"
+    "css-to-react-native-transform": "^1.0.3",
+    "semver": "^5.4.1"
   },
   "peerDependencies": {
     "node-sass": ">=4.0.0",
