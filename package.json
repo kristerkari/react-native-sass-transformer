@@ -1,6 +1,6 @@
 {
   "name": "react-native-sass-transformer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Sass transformer for react-native",
   "main": "index.js",
   "repository": "https://github.com/kristerkari/react-native-sass-transformer",
