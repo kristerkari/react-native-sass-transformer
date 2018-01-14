@@ -10,9 +10,12 @@
   },
   "author": "Krister Kari",
   "license": "MIT",
-  "files": ["index.js", "README.md"],
+  "files": [
+    "index.js",
+    "README.md"
+  ],
   "dependencies": {
-    "css-to-react-native-transform": "^1.0.3",
+    "css-to-react-native-transform": "^1.0.4",
     "semver": "^5.4.1"
   },
   "peerDependencies": {
@@ -31,14 +34,26 @@
     "prettier": "^1.9.2"
   },
   "lint-staged": {
-    "*.js": ["prettier --write", "git add"]
+    "*.js": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "eslintConfig": {
     "extends": "standard",
     "rules": {
-      "space-before-function-paren": [2, "never"],
-      "semi": [2, "always"],
-      "quotes": [2, "double"]
+      "space-before-function-paren": [
+        2,
+        "never"
+      ],
+      "semi": [
+        2,
+        "always"
+      ],
+      "quotes": [
+        2,
+        "double"
+      ]
     }
   },
   "prettier": {
