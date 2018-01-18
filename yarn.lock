@@ -252,9 +252,9 @@ css-color-keywords@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/css-color-keywords/-/css-color-keywords-1.0.0.tgz#fea2616dc676b2962686b3af8dbdbe180b244e05"
 
-css-to-react-native-transform@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/css-to-react-native-transform/-/css-to-react-native-transform-1.0.4.tgz#4ab6fee45d4612667bcdf82fa437d0bbad52f064"
+css-to-react-native-transform@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/css-to-react-native-transform/-/css-to-react-native-transform-1.0.5.tgz#cc1a930659529f1674222975e326329d56c2f77b"
   dependencies:
     css "^2.2.1"
     css-to-react-native "^2.0.4"
