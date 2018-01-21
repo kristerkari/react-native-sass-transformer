@@ -2,6 +2,8 @@
 
 Load Sass files to [react native style objects](https://facebook.github.io/react-native/docs/style.html).
 
+> This transformer can be used together with [React Native CSS modules](https://github.com/kristerkari/react-native-css-modules).
+
 ## Usage
 
 ### Step 1: Install
