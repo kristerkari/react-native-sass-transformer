@@ -280,11 +280,16 @@ css-color-keywords@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/css-color-keywords/-/css-color-keywords-1.0.0.tgz#fea2616dc676b2962686b3af8dbdbe180b244e05"
 
-css-to-react-native-transform@^1.0.8:
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/css-to-react-native-transform/-/css-to-react-native-transform-1.0.8.tgz#59a2f4c9bb08dab0f383991d9edbe8e6678c4bb2"
+css-mediaquery@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/css-mediaquery/-/css-mediaquery-0.1.2.tgz#6a2c37344928618631c54bd33cedd301da18bea0"
+
+css-to-react-native-transform@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/css-to-react-native-transform/-/css-to-react-native-transform-1.4.0.tgz#4bb4575e15461f7e117bf15bf10d04ec0f81bb17"
   dependencies:
     css "^2.2.1"
+    css-mediaquery "^0.1.2"
     css-to-react-native "^2.1.2"
 
 css-to-react-native@^2.1.2:
