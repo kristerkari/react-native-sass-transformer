@@ -1,3 +1,7 @@
+## v1.0.7
+
+* Updated: `css-to-react-native-transform` dependency to v1.4.0.
+
 ## v1.0.6
 
 * Updated: `css-to-react-native-transform` dependency to v1.0.8.
