@@ -5,6 +5,7 @@
   "main": "index.js",
   "repository": "https://github.com/kristerkari/react-native-sass-transformer",
   "scripts": {
+    "release": "npmpub",
     "precommit": "lint-staged",
     "test": "eslint ."
   },
@@ -28,6 +29,7 @@
     "eslint-plugin-standard": "^3.0.1",
     "husky": "^0.14.3",
     "lint-staged": "^6.0.0",
+    "npmpub": "^3.1.0",
     "prettier": "^1.9.2"
   },
   "lint-staged": {
