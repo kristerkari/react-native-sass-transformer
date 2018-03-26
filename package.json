@@ -1,6 +1,6 @@
 {
   "name": "react-native-sass-transformer",
-  "version": "1.0.7",
+  "version": "1.1.0",
   "description": "Sass transformer for react-native",
   "main": "index.js",
   "repository": "https://github.com/kristerkari/react-native-sass-transformer",
@@ -11,7 +11,10 @@
   },
   "author": "Krister Kari",
   "license": "MIT",
-  "files": ["index.js", "README.md"],
+  "files": [
+    "index.js",
+    "README.md"
+  ],
   "dependencies": {
     "css-to-react-native-transform": "^1.4.0",
     "semver": "^5.4.1"
@@ -33,14 +36,26 @@
     "prettier": "^1.9.2"
   },
   "lint-staged": {
-    "*.js": ["prettier --write", "git add"]
+    "*.js": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "eslintConfig": {
     "extends": "standard",
     "rules": {
-      "space-before-function-paren": [2, "never"],
-      "semi": [2, "always"],
-      "quotes": [2, "double"]
+      "space-before-function-paren": [
+        2,
+        "never"
+      ],
+      "semi": [
+        2,
+        "always"
+      ],
+      "quotes": [
+        2,
+        "double"
+      ]
     }
   },
   "prettier": {

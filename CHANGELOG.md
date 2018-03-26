@@ -1,3 +1,7 @@
+## v1.1.0
+
+* Added: enabled parsing of CSS Media Queries.
+
 ## v1.0.7
 
 * Updated: `css-to-react-native-transform` dependency to v1.4.0.
