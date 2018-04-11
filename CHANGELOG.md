@@ -1,3 +1,7 @@
+## HEAD
+
+* Fixed: added `includePaths` option to fix `@import`s.
+
 ## v1.1.0
 
 * Added: enabled parsing of CSS Media Queries.
