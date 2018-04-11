@@ -1,4 +1,4 @@
-## HEAD
+## v1.1.1
 
 * Fixed: added `includePaths` option to fix `@import`s.
 
