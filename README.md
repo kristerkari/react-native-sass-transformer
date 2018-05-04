@@ -25,7 +25,7 @@ module.exports = {
     return require.resolve("react-native-sass-transformer");
   },
   getSourceExts() {
-    return ["scss", "sass"];
+    return ["js", "jsx", "scss", "sass"];
   }
 };
 ```
