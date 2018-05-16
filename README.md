@@ -30,6 +30,19 @@ module.exports = {
 };
 ```
 
+...or if you are using [Expo](https://expo.io/), in `app.json`:
+
+```json
+{
+  "expo": {
+    "packagerOpts": {
+      "sourceExts": ["js", "jsx", "scss", "sass"],
+      "transformer": "node_modules/react-native-sass-transformer/index.js"
+    }
+  }
+}
+```
+
 ## How does it work?
 
 Your `App.scss` file might look like this:
