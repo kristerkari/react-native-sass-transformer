@@ -2,7 +2,6 @@ var sass = require("node-sass");
 var semver = require("semver");
 var css2rn = require("css-to-react-native-transform").default;
 var path = require("path");
-var appRoot = require("app-root-path");
 
 var upstreamTransformer = null;
 
@@ -34,7 +33,10 @@ module.exports.transform = function(src, filename, options) {
   if (filename.endsWith(".scss") || filename.endsWith(".sass")) {
     var result = sass.renderSync({
       data: src,
-      includePaths: [path.dirname(filename), appRoot]
+      includePaths: [
+        path.dirname(filename),
+        path.dirname(require.main.filename)
+      ]
     });
     var css = result.css.toString();
     var cssObject = css2rn(css, { parseMediaQueries: true });
