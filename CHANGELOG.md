@@ -1,3 +1,7 @@
+## v1.1.2
+
+* Fixed: added project's root path to `includePaths` option to fix `@import`s from top level.
+
 ## v1.1.1
 
 * Fixed: added `includePaths` option to fix `@import`s.
