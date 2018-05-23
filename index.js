@@ -33,7 +33,10 @@ module.exports.transform = function(src, filename, options) {
   if (filename.endsWith(".scss") || filename.endsWith(".sass")) {
     var result = sass.renderSync({
       data: src,
-      includePaths: [path.dirname(filename)]
+      includePaths: [
+        path.dirname(filename),
+        path.dirname(require.main.filename)
+      ]
     });
     var css = result.css.toString();
     var cssObject = css2rn(css, { parseMediaQueries: true });
