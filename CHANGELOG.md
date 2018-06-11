@@ -1,3 +1,8 @@
+## v1.2.0
+
+* Updated: `css-to-react-native-transform` dependency to v1.6.0.
+* Added: enabled parsing of CSS viewport units (does not work without `babel-plugin-react-native-classname-to-dynamic-style`).
+
 ## v1.1.3
 
 * Fixed: use `app-root-path` package to correctly get project's root folder.
