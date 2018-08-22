@@ -36,7 +36,8 @@ module.exports.transform = function(src, filename, options) {
   if (filename.endsWith(".scss") || filename.endsWith(".sass")) {
     var result = sass.renderSync({
       data: src,
-      includePaths: [path.dirname(filename), appRoot]
+      includePaths: [path.dirname(filename), appRoot],
+      indentedSyntax: filename.endsWith(".sass")
     });
     var css = result.css.toString();
     var cssObject = css2rn(css, { parseMediaQueries: true });

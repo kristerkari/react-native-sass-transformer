@@ -9,6 +9,8 @@ Load Sass files to [react native style objects](https://facebook.github.io/react
 
 ## Usage
 
+Please use the `.scss` file extension for SCSS syntax and the `.sass` file extension for indented Sass syntax.
+
 ### Step 1: Install
 
 ```sh
@@ -48,8 +50,12 @@ module.exports = {
 Your `App.scss` file might look like this:
 
 ```scss
-.myClass {
+%blue {
   color: blue;
+}
+
+.myClass {
+  @extend %blue;
 }
 .myOtherClass {
   color: red;
