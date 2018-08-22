@@ -1,3 +1,7 @@
+## v1.2.3
+
+- Fixed: Pass `indentedSyntax` option to `node-sass` to enable support for indented syntax using `.sass` file extension.
+
 ## v1.2.2
 
 - Updated: `app-root-path` dependency to v2.1.0.
