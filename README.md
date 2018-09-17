@@ -21,7 +21,7 @@ yarn add --dev react-native-sass-transformer node-sass
 
 #### For React Native v0.57 or newer
 
-Add this to your `rn-cli.config.js` (create the file if it does not exist already):
+Add this to `rn-cli.config.js` in your project's root (create the file if it does not exist already):
 
 ```js
 const { getDefaultConfig } = require("metro-config");
@@ -42,7 +42,7 @@ module.exports = (async () => {
 
 #### For React Native v0.56 or older
 
-Add this to your `rn-cli.config.js` (create the file if it does not exist already):
+Add this to `rn-cli.config.js` in your project's root (create the file if it does not exist already):
 
 ```js
 module.exports = {
