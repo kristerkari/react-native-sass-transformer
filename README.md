@@ -27,7 +27,7 @@ Add this to your `rn-cli.config.js` (create the file if it does not exist alread
 const { getDefaultConfig } = require("metro-config");
 module.exports = (async () => {
   const {
-    resolver: { sourceExts, assetExts }
+    resolver: { sourceExts }
   } = await getDefaultConfig();
   return {
     transformer: {
