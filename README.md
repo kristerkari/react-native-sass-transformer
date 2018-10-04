@@ -1,16 +1,73 @@
-# react-native-sass-transformer
+# react-native-sass-transformer [![NPM version](http://img.shields.io/npm/v/react-native-sass-transformer.svg)](https://www.npmjs.org/package/react-native-sass-transformer) [![Downloads per month](https://img.shields.io/npm/dm/react-native-sass-transformer.svg)](http://npmcharts.com/compare/react-native-sass-transformer?periodLength=30) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github)
 
-[![NPM version](http://img.shields.io/npm/v/react-native-sass-transformer.svg)](https://www.npmjs.org/package/react-native-sass-transformer)
-[![Downloads per month](https://img.shields.io/npm/dm/react-native-sass-transformer.svg)](http://npmcharts.com/compare/react-native-sass-transformer?periodLength=30)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github)
+Use [Sass](https://sass-lang.com/) to style your React Native apps.
 
-Load Sass files to [react native style objects](https://facebook.github.io/react-native/docs/style.html).
+Behind the scenes the Sass files are transformed to [react native style objects](https://facebook.github.io/react-native/docs/style.html) (look at the examples).
 
 > This transformer can be used together with [React Native CSS modules](https://github.com/kristerkari/react-native-css-modules).
 
-## Usage
+## How does it work?
 
-Please use the `.scss` file extension for SCSS syntax and the `.sass` file extension for indented Sass syntax.
+*Please use the `.scss` file extension for SCSS syntax and the `.sass` file extension for indented Sass syntax.*
+
+Your `App.scss` file might look like this:
+
+```scss
+%blue {
+  color: blue;
+}
+.myClass {
+  @extend %blue;
+}
+.myOtherClass {
+  color: red;
+}
+.my-dashed-class {
+  color: green;
+}
+```
+
+When you import your stylesheet:
+
+```js
+import styles from "./App.scss";
+```
+
+Your imported styles will look like this:
+
+```js
+var styles = {
+  myClass: {
+    color: "blue"
+  },
+  myOtherClass: {
+    color: "red"
+  },
+  "my-dashed-class": {
+    color: "green"
+  }
+};
+```
+
+You can then use that style object with an element:
+
+**Plain React Native:**
+
+```jsx
+<MyElement style={styles.myClass} />
+```
+
+**React Native CSS modules using [className](https://github.com/kristerkari/babel-plugin-react-native-classname-to-style) property:**
+
+```jsx
+<MyElement className={styles.myClass} />
+```
+
+**React Native CSS modules using [styleName](https://github.com/kristerkari/babel-plugin-react-native-stylename-to-style) property:**
+
+```jsx
+<MyElement styleName="myClass my-dashed-class" />
+```
 
 ### Step 1: Install
 
@@ -26,6 +83,7 @@ Add this to `rn-cli.config.js` in your project's root (create the file if it doe
 
 ```js
 const { getDefaultConfig } = require("metro-config");
+
 module.exports = (async () => {
   const {
     resolver: { sourceExts }
@@ -40,6 +98,8 @@ module.exports = (async () => {
   };
 })();
 ```
+
+---
 
 #### For React Native v0.56 or older
 
@@ -69,44 +129,10 @@ module.exports = {
 }
 ```
 
-## How does it work?
+## Dependencies
 
-Your `App.scss` file might look like this:
+This library has the following Node.js modules as dependencies:
 
-```scss
-%blue {
-  color: blue;
-}
-
-.myClass {
-  @extend %blue;
-}
-.myOtherClass {
-  color: red;
-}
-```
-
-When you import your stylesheet:
-
-```js
-import styles from "./App.scss";
-```
-
-Your imported styles will look like this:
-
-```js
-var styles = {
-  myClass: {
-    color: "blue"
-  },
-  myOtherClass: {
-    color: "red"
-  }
-};
-```
-
-You can then use that style object with an element:
-
-```jsx
-<MyElement style={styles.myClass} />
-```
+* [app-root-path](https://github.com/inxilpro/node-app-root-path)
+* [css-to-react-native-transform](https://github.com/kristerkari/css-to-react-native-transform)
+* [semver](https://github.com/npm/node-semver#readme)
