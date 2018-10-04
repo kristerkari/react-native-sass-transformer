@@ -8,8 +8,6 @@ Behind the scenes the Sass files are transformed to [react native style objects]
 
 ## How does it work?
 
-*Please use the `.scss` file extension for SCSS syntax and the `.sass` file extension for indented Sass syntax.*
-
 Your `App.scss` file might look like this:
 
 ```scss
@@ -68,6 +66,10 @@ You can then use that style object with an element:
 ```jsx
 <MyElement styleName="myClass my-dashed-class" />
 ```
+
+_Please use the `.scss` file extension for SCSS syntax and the `.sass` file extension for indented Sass syntax._
+
+## Installation and configuration
 
 ### Step 1: Install
 
@@ -133,6 +135,6 @@ module.exports = {
 
 This library has the following Node.js modules as dependencies:
 
-* [app-root-path](https://github.com/inxilpro/node-app-root-path)
-* [css-to-react-native-transform](https://github.com/kristerkari/css-to-react-native-transform)
-* [semver](https://github.com/npm/node-semver#readme)
+- [app-root-path](https://github.com/inxilpro/node-app-root-path)
+- [css-to-react-native-transform](https://github.com/kristerkari/css-to-react-native-transform)
+- [semver](https://github.com/npm/node-semver#readme)
