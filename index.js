@@ -34,11 +34,17 @@ module.exports.transform = function(src, filename, options) {
   }
 
   if (filename.endsWith(".scss") || filename.endsWith(".sass")) {
-    var result = sass.renderSync({
+    var defaultOpts = {
       data: src,
       includePaths: [path.dirname(filename), appRoot],
       indentedSyntax: filename.endsWith(".sass")
-    });
+    };
+
+    var opts = options.sassOptions
+      ? Object.assign(options.sassOptions, defaultOpts)
+      : defaultOpts;
+
+    var result = sass.renderSync(opts);
     var css = result.css.toString();
     var cssObject = css2rn(css, { parseMediaQueries: true });
 
