@@ -35,14 +35,13 @@ module.exports.transform = function(src, filename, options) {
 
   if (filename.endsWith(".scss") || filename.endsWith(".sass")) {
     var defaultOpts = {
-      data: src,
       includePaths: [path.dirname(filename), appRoot],
       indentedSyntax: filename.endsWith(".sass")
     };
 
     var opts = options.sassOptions
-      ? Object.assign(options.sassOptions, defaultOpts)
-      : defaultOpts;
+      ? Object.assign(defaultOpts, options.sassOptions, { data: src })
+      : Object.assign(defaultOpts, { data: src });
 
     var result = sass.renderSync(opts);
     var css = result.css.toString();
