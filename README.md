@@ -135,6 +135,10 @@ module.exports = {
 }
 ```
 
+## Platform specific extensions
+
+If you need [React Native's platform specific extensions](https://facebook.github.io/react-native/docs/platform-specific-code.html#platform-specific-extensions) for your Sass files, you can use [babel-plugin-react-native-platform-specific-extensions](https://github.com/kristerkari/babel-plugin-react-native-platform-specific-extensions). Platform specific extensions for files imported using Sass' `@import` are supported by default.
+
 ## Sass options
 
 If you need to pass options (e.g. functions) to `node-sass`, you can do so by creating a `transformer.js` file and doing the following:
