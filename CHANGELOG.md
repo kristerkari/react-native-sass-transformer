@@ -1,3 +1,8 @@
+## v1.3.0
+
+- Added: support for passing options to `node-sass`.
+- Added: support for platform specific extensions when using Sass' `@import`.
+
 ## v1.2.3
 
 - Fixed: Pass `indentedSyntax` option to `node-sass` to enable support for indented syntax using `.sass` file extension.
