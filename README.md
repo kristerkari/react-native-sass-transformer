@@ -135,6 +135,54 @@ module.exports = {
 }
 ```
 
+## Sass options
+
+If you need to pass options (e.g. functions) to `node-sass`, you can do so by creating a `transformer.js` file and doing the following:
+
+```js
+var upstreamTransformer = require("metro/src/transformer");
+var sassTransformer = require("react-native-sass-transformer");
+
+module.exports.transform = function({ src, filename, options }) {
+  if (filename.endsWith(".scss") || filename.endsWith(".sass")) {
+    var opts = Object.assign(options, {
+      sassOptions: {
+        functions: {
+          "rem($px)": px => {
+            px.setValue(px.getValue() / 16);
+            px.setUnit("rem");
+            return px;
+          }
+        }
+      }
+    });
+    return sassTransformer.transform({ src, filename, options: opts });
+  } else {
+    return upstreamTransformer.transform({ src, filename, options });
+  }
+};
+```
+
+After that in `rn-cli.config.js` point the `babelTransformerPath` to that file:
+
+```js
+const { getDefaultConfig } = require("metro-config");
+
+module.exports = (async () => {
+  const {
+    resolver: { sourceExts }
+  } = await getDefaultConfig();
+  return {
+    transformer: {
+      babelTransformerPath: require.resolve("./transformer.js")
+    },
+    resolver: {
+      sourceExts: [...sourceExts, "scss", "sass"]
+    }
+  };
+})();
+```
+
 ## Dependencies
 
 This library has the following Node.js modules as dependencies:
@@ -142,3 +190,7 @@ This library has the following Node.js modules as dependencies:
 - [app-root-path](https://github.com/inxilpro/node-app-root-path)
 - [css-to-react-native-transform](https://github.com/kristerkari/css-to-react-native-transform)
 - [semver](https://github.com/npm/node-semver#readme)
+
+```
+
+```
