@@ -190,7 +190,3 @@ This library has the following Node.js modules as dependencies:
 - [app-root-path](https://github.com/inxilpro/node-app-root-path)
 - [css-to-react-native-transform](https://github.com/kristerkari/css-to-react-native-transform)
 - [semver](https://github.com/npm/node-semver#readme)
-
-```
-
-```
