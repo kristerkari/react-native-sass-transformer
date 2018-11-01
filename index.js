@@ -83,8 +83,6 @@ module.exports.transform = function(src, filename, options) {
         if (f) {
           return { file: f };
         }
-
-        return new Error(url + " could not be resolved in " + incPaths);
       }
     };
 
