@@ -1,3 +1,7 @@
+## v1.3.1
+
+- Fixed: Removed code to throw an error when a Sass include path can not be resolved. This fixes Sass' "directories as modules" feature.
+
 ## v1.3.0
 
 - Added: support for passing options to `node-sass`.
