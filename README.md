@@ -144,7 +144,18 @@ If you need [React Native's platform specific extensions](https://facebook.githu
 If you need to pass options (e.g. functions) to `node-sass`, you can do so by creating a `transformer.js` file and doing the following:
 
 ```js
-var upstreamTransformer = require("metro/src/transformer");
+// For React Native version 0.56 or later
+var upstreamTransformer = require("metro/src/reactNativeTransformer");
+
+// For React Native version 0.52-0.55
+// var upstreamTransformer = require("metro/src/transformer");
+
+// For React Native version 0.47-0.51
+// var upstreamTransformer = require("metro-bundler/src/transformer");
+
+// For React Native version 0.46
+// var upstreamTransformer = require("metro-bundler/build/transformer");
+
 var sassTransformer = require("react-native-sass-transformer");
 
 module.exports.transform = function({ src, filename, options }) {
