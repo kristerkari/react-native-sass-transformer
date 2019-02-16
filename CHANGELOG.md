@@ -1,3 +1,7 @@
+## v1.3.2
+
+- Fixed: Compatibility with react-native v0.59
+
 ## v1.3.1
 
 - Fixed: Removed code to throw an error when a Sass include path can not be resolved. This fixes Sass' "directories as modules" feature.
