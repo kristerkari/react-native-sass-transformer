@@ -85,7 +85,7 @@ yarn add --dev react-native-sass-transformer node-sass
 
 #### For React Native v0.57 or newer / Expo SDK v31.0.0 or newer
 
-Add this to `rn-cli.config.js` in your project's root (create the file if it does not exist already):
+Add this to `metro.config.js` in your project's root (create the file if it does not exist already):
 
 ```js
 const { getDefaultConfig } = require("metro-config");
@@ -111,7 +111,7 @@ If you are using [Expo](https://expo.io/), you also need to add this to `app.jso
 {
   "expo": {
     "packagerOpts": {
-      "config": "rn-cli.config.js"
+      "config": "metro.config.js"
     }
   }
 }
@@ -134,7 +134,9 @@ module.exports = {
 };
 ```
 
-#### Expo SDK v30.0.0 or older
+---
+
+#### For Expo SDK v30.0.0 or older
 
 If you are using [Expo](https://expo.io/), instead of adding the `rn-cli.config.js` file, you need to add this to `app.json`:
 
@@ -158,8 +160,11 @@ If you need [React Native's platform specific extensions](https://facebook.githu
 If you need to pass options (e.g. functions) to `node-sass`, you can do so by creating a `transformer.js` file and doing the following:
 
 ```js
-// For React Native version 0.56 or later
-var upstreamTransformer = require("metro/src/reactNativeTransformer");
+// For React Native version 0.59 or later
+var upstreamTransformer = require("metro-react-native-babel-transformer");
+
+// For React Native version 0.56-0.58
+// var upstreamTransformer = require("metro/src/reactNativeTransformer");
 
 // For React Native version 0.52-0.55
 // var upstreamTransformer = require("metro/src/transformer");
@@ -192,7 +197,7 @@ module.exports.transform = function({ src, filename, options }) {
 };
 ```
 
-After that in `rn-cli.config.js` point the `babelTransformerPath` to that file:
+After that in `metro.config.js` point the `babelTransformerPath` to that file:
 
 ```js
 const { getDefaultConfig } = require("metro-config");
