@@ -1,3 +1,8 @@
+## v1.3.3
+
+- Updated: `semver` dependency to v5.6.0.
+- Updated: `css-to-react-native-transform` dependency to v1.8.1.
+
 ## v1.3.2
 
 - Fixed: Compatibility with react-native v0.59
