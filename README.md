@@ -227,6 +227,8 @@ Start by installing dependencies:
 yarn add postcss postcss-css-variables react-native-postcss-transformer --dev
 ```
 
+Add `postcss-css-variables` to your PostCSS configuration with [one of the supported config formats](https://github.com/michael-ciniawsky/postcss-load-config), e.g. `package.json`, `.postcssrc`, `postcss.config.js`, etc.
+
 After that create a `transformer.js` file and do the following:
 
 ```js
