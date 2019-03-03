@@ -219,6 +219,8 @@ module.exports = (async () => {
 
 ## CSS Custom Properties (CSS variables)
 
+_You need version 1.4.0 or newer_
+
 CSS variables are not supported by default, but you can add support for them by using [PostCSS](https://postcss.org/) and [postcss-css-variables](https://github.com/MadLittleMods/postcss-css-variables#readme) plugin.
 
 Start by installing dependencies:
