@@ -50,6 +50,55 @@ function findVariant(name, extensions, includePaths) {
   return false;
 }
 
+function renderToCSS({ src, filename, options }) {
+  const ext = path.extname(filename);
+  const exts = [
+    // add the platform specific extension, first in the array to take precedence
+    options.platform === "android" ? ".android" + ext : ".ios" + ext,
+    ".native" + ext,
+    ext
+  ];
+  var defaultOpts = {
+    includePaths: [path.dirname(filename), appRoot],
+    indentedSyntax: filename.endsWith(".sass"),
+    importer: function(url /*, prev, done */) {
+      // url is the path in import as is, which LibSass encountered.
+      // prev is the previously resolved path.
+      // done is an optional callback, either consume it or return value synchronously.
+      // this.options contains this options hash, this.callback contains the node-style callback
+
+      const urlPath = path.parse(url);
+      const importerOptions = this.options;
+      const incPaths = importerOptions.includePaths.slice(0).split(":");
+
+      if (urlPath.dir.length > 0) {
+        incPaths.unshift(path.resolve(path.dirname(filename), urlPath.dir)); // add the file's dir to the search array
+      }
+      const f = findVariant(urlPath.name, exts, incPaths);
+
+      if (f) {
+        return { file: f };
+      }
+    }
+  };
+
+  var opts = options.sassOptions
+    ? Object.assign(defaultOpts, options.sassOptions, { data: src })
+    : Object.assign(defaultOpts, { data: src });
+
+  var result = sass.renderSync(opts);
+  var css = result.css.toString();
+  return css;
+}
+
+function renderToCSSPromise(css) {
+  return Promise.resolve(renderToCSS(css));
+}
+
+function renderCSSToReactNative(css) {
+  return css2rn(css, { parseMediaQueries: true });
+}
+
 module.exports.transform = function(src, filename, options) {
   if (typeof src === "object") {
     // handle RN >= 0.46
@@ -57,45 +106,8 @@ module.exports.transform = function(src, filename, options) {
   }
 
   if (filename.endsWith(".scss") || filename.endsWith(".sass")) {
-    const ext = path.extname(filename);
-    const exts = [
-      // add the platform specific extension, first in the array to take precedence
-      options.platform === "android" ? ".android" + ext : ".ios" + ext,
-      ".native" + ext,
-      ext
-    ];
-    var defaultOpts = {
-      includePaths: [path.dirname(filename), appRoot],
-      indentedSyntax: filename.endsWith(".sass"),
-      importer: function(url /*, prev, done */) {
-        // url is the path in import as is, which LibSass encountered.
-        // prev is the previously resolved path.
-        // done is an optional callback, either consume it or return value synchronously.
-        // this.options contains this options hash, this.callback contains the node-style callback
-
-        const urlPath = path.parse(url);
-        const importerOptions = this.options;
-        const incPaths = importerOptions.includePaths.slice(0).split(":");
-
-        if (urlPath.dir.length > 0) {
-          incPaths.unshift(path.resolve(path.dirname(filename), urlPath.dir)); // add the file's dir to the search array
-        }
-        const f = findVariant(urlPath.name, exts, incPaths);
-
-        if (f) {
-          return { file: f };
-        }
-      }
-    };
-
-    var opts = options.sassOptions
-      ? Object.assign(defaultOpts, options.sassOptions, { data: src })
-      : Object.assign(defaultOpts, { data: src });
-
-    var result = sass.renderSync(opts);
-    var css = result.css.toString();
-    var cssObject = css2rn(css, { parseMediaQueries: true });
-
+    var css = renderToCSS({ src, filename, options });
+    var cssObject = renderCSSToReactNative(css);
     return upstreamTransformer.transform({
       src: "module.exports = " + JSON.stringify(cssObject),
       filename,
@@ -104,3 +116,5 @@ module.exports.transform = function(src, filename, options) {
   }
   return upstreamTransformer.transform({ src, filename, options });
 };
+
+module.exports.renderToCSS = renderToCSSPromise;

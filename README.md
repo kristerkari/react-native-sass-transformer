@@ -217,6 +217,72 @@ module.exports = (async () => {
 })();
 ```
 
+## CSS Custom Properties (CSS variables)
+
+CSS variables are not supported by default, but you can add support for them by using [PostCSS](https://postcss.org/) and [postcss-css-variables](https://github.com/MadLittleMods/postcss-css-variables#readme) plugin.
+
+Start by installing dependencies:
+
+```sh
+yarn add postcss postcss-css-variables react-native-postcss-transformer --dev
+```
+
+Add `postcss-css-variables` to your PostCSS configuration with [one of the supported config formats](https://github.com/michael-ciniawsky/postcss-load-config), e.g. `package.json`, `.postcssrc`, `postcss.config.js`, etc.
+
+After that create a `transformer.js` file and do the following:
+
+```js
+// For React Native version 0.59 or later
+var upstreamTransformer = require("metro-react-native-babel-transformer");
+
+// For React Native version 0.56-0.58
+// var upstreamTransformer = require("metro/src/reactNativeTransformer");
+
+// For React Native version 0.52-0.55
+// var upstreamTransformer = require("metro/src/transformer");
+
+// For React Native version 0.47-0.51
+// var upstreamTransformer = require("metro-bundler/src/transformer");
+
+// For React Native version 0.46
+// var upstreamTransformer = require("metro-bundler/build/transformer");
+
+var sassTransformer = require("react-native-sass-transformer");
+var postCSSTransformer = require("react-native-postcss-transformer");
+
+module.exports.transform = function({ src, filename, options }) {
+  if (filename.endsWith(".scss") || filename.endsWith(".sass")) {
+    return sassTransformer
+      .renderToCSS({ src, filename, options })
+      .then(css =>
+        postCSSTransformer.transform({ src: css, filename, options })
+      );
+  } else {
+    return upstreamTransformer.transform({ src, filename, options });
+  }
+};
+```
+
+After that in `metro.config.js` point the `babelTransformerPath` to that file:
+
+```js
+const { getDefaultConfig } = require("metro-config");
+
+module.exports = (async () => {
+  const {
+    resolver: { sourceExts }
+  } = await getDefaultConfig();
+  return {
+    transformer: {
+      babelTransformerPath: require.resolve("./transformer.js")
+    },
+    resolver: {
+      sourceExts: [...sourceExts, "scss", "sass"]
+    }
+  };
+})();
+```
+
 ## Dependencies
 
 This library has the following Node.js modules as dependencies:
