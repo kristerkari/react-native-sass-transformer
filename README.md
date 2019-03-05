@@ -221,7 +221,7 @@ module.exports = (async () => {
 
 _You need version 1.4.0 or newer_
 
-```scss
+```css
 :root {
   --text-color: blue;
 }
