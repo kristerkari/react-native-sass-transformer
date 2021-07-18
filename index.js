@@ -36,7 +36,7 @@ function findVariant(name, extensions, includePaths) {
     const includePath = includePaths[i];
 
     // try to find the file iterating through the extensions, in order.
-    const foundExtention = extensions.find(extension => {
+    const foundExtention = extensions.find((extension) => {
       const fname = includePath + "/" + name + extension;
       const partialfname = includePath + "/_" + name + extension;
       return fs.existsSync(fname) || fs.existsSync(partialfname);
@@ -61,7 +61,7 @@ function renderToCSS({ src, filename, options }) {
   var defaultOpts = {
     includePaths: [path.dirname(filename), appRoot],
     indentedSyntax: filename.endsWith(".sass"),
-    importer: function(url /*, prev, done */) {
+    importer: function (url /*, prev, done */) {
       // url is the path in import as is, which LibSass encountered.
       // prev is the previously resolved path.
       // done is an optional callback, either consume it or return value synchronously.
@@ -99,7 +99,7 @@ function renderCSSToReactNative(css) {
   return css2rn(css, { parseMediaQueries: true });
 }
 
-module.exports.transform = function(src, filename, options) {
+module.exports.transform = function (src, filename, options) {
   if (typeof src === "object") {
     // handle RN >= 0.46
     ({ src, filename, options } = src);
