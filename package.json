@@ -21,8 +21,8 @@
     "semver": "^5.6.0"
   },
   "peerDependencies": {
-    "node-sass": ">=4.0.0",
-    "react-native": ">=0.45.0"
+    "react-native": ">=0.45.0",
+    "sass": "^1.43.2"
   },
   "devDependencies": {
     "eslint": "^7.31.0",

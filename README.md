@@ -78,7 +78,7 @@ _Please use the `.scss` file extension for SCSS syntax and the `.sass` file exte
 ### Step 1: Install
 
 ```sh
-yarn add --dev react-native-sass-transformer node-sass
+yarn add --dev react-native-sass-transformer sass
 ```
 
 ### Step 2: Configure the react native packager
@@ -158,7 +158,7 @@ If you need [React Native's platform specific extensions](https://facebook.githu
 
 ## Sass options
 
-If you need to pass options (e.g. functions) to `node-sass`, you can do so by creating a `transformer.js` file and doing the following:
+If you need to pass options (e.g. functions) to `sass`, you can do so by creating a `transformer.js` file and doing the following:
 
 ```js
 // For React Native version 0.59 or later
