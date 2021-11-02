@@ -44,10 +44,7 @@
   "eslintConfig": {
     "extends": "standard",
     "rules": {
-      "space-before-function-paren": [
-        2,
-        "never"
-      ],
+      "space-before-function-paren": 0,
       "semi": [
         2,
         "always"
@@ -56,7 +53,8 @@
         2,
         "double"
       ],
-      "no-else-return": 2
+      "no-else-return": 2,
+      "no-var": 0
     }
   },
   "prettier": {
