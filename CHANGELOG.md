@@ -1,3 +1,7 @@
+## v2.0.0
+
+- Breaking: Changed to use the `sass` npm package instead of the deprecated `node-sass` package. Please update your dependencies.
+
 ## v1.4.0
 
 - Added: `renderToCSS` method. It can be used together with the PostCSS transformer to add support for CSS variables.
