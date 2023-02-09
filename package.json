@@ -17,7 +17,7 @@
   ],
   "dependencies": {
     "app-root-path": "^2.1.0",
-    "css-to-react-native-transform": "^1.8.1",
+    "css-to-react-native-transform": "^2.0.0",
     "semver": "^5.6.0"
   },
   "peerDependencies": {
