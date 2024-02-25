@@ -161,8 +161,11 @@ If you need [React Native's platform specific extensions](https://facebook.githu
 If you need to pass options (e.g. functions) to `sass`, you can do so by creating a `transformer.js` file and doing the following:
 
 ```js
+// For React Native version 0.73 or later
+var upstreamTransformer = require("@react-native/metro-babel-transformer");
+
 // For React Native version 0.59 or later
-var upstreamTransformer = require("metro-react-native-babel-transformer");
+// var upstreamTransformer = require("metro-react-native-babel-transformer");
 
 // For React Native version 0.56-0.58
 // var upstreamTransformer = require("metro/src/reactNativeTransformer");
@@ -245,8 +248,11 @@ Add `postcss-css-variables` to your PostCSS configuration with [one of the suppo
 After that create a `transformer.js` file and do the following:
 
 ```js
+// For React Native version 0.73 or later
+var upstreamTransformer = require("@react-native/metro-babel-transformer");
+
 // For React Native version 0.59 or later
-var upstreamTransformer = require("metro-react-native-babel-transformer");
+// var upstreamTransformer = require("metro-react-native-babel-transformer");
 
 // For React Native version 0.56-0.58
 // var upstreamTransformer = require("metro/src/reactNativeTransformer");
