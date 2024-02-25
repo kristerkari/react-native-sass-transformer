@@ -1,3 +1,7 @@
+## v2.1.0
+
+- Added: support for react-native v0.73
+
 ## v2.0.0
 
 - Breaking: Changed to use the `sass` npm package instead of the deprecated `node-sass` package. Please update your dependencies.
