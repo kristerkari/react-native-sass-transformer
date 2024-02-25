@@ -1,5 +1,5 @@
 var sass = require("sass");
-var semver = require("semver");
+var semver = require("semver/functions/minor");
 var css2rn = require("css-to-react-native-transform").default;
 var path = require("path");
 var fs = require("fs");
@@ -8,7 +8,7 @@ var appRoot = require("app-root-path");
 var upstreamTransformer = null;
 
 var reactNativeVersionString = require("react-native/package.json").version;
-var reactNativeMinorVersion = semver(reactNativeVersionString).minor;
+var reactNativeMinorVersion = semver(reactNativeVersionString);
 
 if (reactNativeMinorVersion >= 73) {
   upstreamTransformer = require("@react-native/metro-babel-transformer");
