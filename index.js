@@ -3,7 +3,7 @@ var semver = require("semver/functions/minor");
 var css2rn = require("css-to-react-native-transform").default;
 var path = require("path");
 var fs = require("fs");
-var appRoot = require("app-root-path");
+var appRoot = require("app-root-path").path;
 
 var upstreamTransformer = null;
 
@@ -74,7 +74,12 @@ function renderToCSS({ src, filename, options }) {
       const incPaths = importerOptions.includePaths.slice(0).split(":");
 
       if (urlPath.dir.length > 0) {
-        incPaths.unshift(path.resolve(path.dirname(filename), urlPath.dir)); // add the file's dir to the search array
+        // incPaths.map() does not work, I believe because node-sass is built off an old version of V8.
+        // The error is terrifying (FATAL ERROR: v8::ToLocalChecked Empty MaybeLocal).
+        for (let i = 0; i < incPaths.length; i++) {
+          // Adjust the paths based on the path given.
+          incPaths[i] = path.resolve(incPaths[i], urlPath.dir);
+        }
       }
       const f = findVariant(urlPath.name, exts, incPaths);
 
