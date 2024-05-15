@@ -1,36 +1,28 @@
-var sass = require("sass");
-var semver = require("semver/functions/minor");
-var css2rn = require("css-to-react-native-transform").default;
-var path = require("path");
-var fs = require("fs");
-var appRoot = require("app-root-path");
+const sass = require("sass");
+const css2rn = require("css-to-react-native-transform").default;
+const path = require("path");
+const fs = require("fs");
+const appRoot = require("app-root-path");
 
-var upstreamTransformer = null;
-
-var reactNativeVersionString = require("react-native/package.json").version;
-var reactNativeMinorVersion = semver(reactNativeVersionString);
-
-if (reactNativeMinorVersion >= 73) {
-  upstreamTransformer = require("@react-native/metro-babel-transformer");
-} else if (reactNativeMinorVersion >= 59) {
-  upstreamTransformer = require("metro-react-native-babel-transformer");
-} else if (reactNativeMinorVersion >= 56) {
-  upstreamTransformer = require("metro/src/reactNativeTransformer");
-} else if (reactNativeMinorVersion >= 52) {
-  upstreamTransformer = require("metro/src/transformer");
-} else if (reactNativeMinorVersion >= 47) {
-  upstreamTransformer = require("metro-bundler/src/transformer");
-} else if (reactNativeMinorVersion === 46) {
-  upstreamTransformer = require("metro-bundler/build/transformer");
-} else {
-  // handle RN <= 0.45
-  var oldUpstreamTransformer = require("react-native/packager/transformer");
-  upstreamTransformer = {
-    transform({ src, filename, options }) {
-      return oldUpstreamTransformer.transform(src, filename, options);
+/**
+ * `metro-react-native-babel-transformer` has recently been migrated to the React Native
+ * repository and published under the `@react-native/metro-babel-transformer` name.
+ * The new package is default on `react-native` >= 0.73.0, so we need to conditionally load it.
+ *
+ * Additionally, Expo v50.0.0 has begun using @expo/metro-config/babel-transformer as its upstream transformer.
+ * To avoid breaking projects, we should prioritze that package if it is available.
+ */
+const upstreamTransformer = (() => {
+  try {
+    return require("@expo/metro-config/babel-transformer");
+  } catch (error) {
+    try {
+      return require("@react-native/metro-babel-transformer");
+    } catch (error) {
+      return require("metro-react-native-babel-transformer");
     }
-  };
-}
+  }
+})();
 
 // Iterate through the include paths and extensions to find the file variant
 function findVariant(name, extensions, includePaths) {
@@ -60,7 +52,7 @@ function renderToCSS({ src, filename, options }) {
     ".native" + ext,
     ext
   ];
-  var defaultOpts = {
+  const defaultOpts = {
     includePaths: [path.dirname(filename), appRoot],
     indentedSyntax: filename.endsWith(".sass"),
     importer: function (url /*, prev, done */) {
@@ -84,12 +76,12 @@ function renderToCSS({ src, filename, options }) {
     }
   };
 
-  var opts = options.sassOptions
+  const opts = options.sassOptions
     ? Object.assign(defaultOpts, options.sassOptions, { data: src })
     : Object.assign(defaultOpts, { data: src });
 
-  var result = sass.renderSync(opts);
-  var css = result.css.toString();
+  const result = sass.renderSync(opts);
+  const css = result.css.toString();
   return css;
 }
 
@@ -101,22 +93,17 @@ function renderCSSToReactNative(css) {
   return css2rn(css, { parseMediaQueries: true });
 }
 
-module.exports.transform = function (src, filename, options) {
-  if (typeof src === "object") {
-    // handle RN >= 0.46
-    ({ src, filename, options } = src);
-  }
-
+module.exports.transform = async ({ src, filename, ...rest }) => {
   if (filename.endsWith(".scss") || filename.endsWith(".sass")) {
-    var css = renderToCSS({ src, filename, options });
-    var cssObject = renderCSSToReactNative(css);
+    const css = renderToCSS({ src, filename, ...rest });
+    const cssObject = renderCSSToReactNative(css);
     return upstreamTransformer.transform({
       src: "module.exports = " + JSON.stringify(cssObject),
       filename,
-      options
+      ...rest
     });
   }
-  return upstreamTransformer.transform({ src, filename, options });
+  return upstreamTransformer.transform({ src, filename, ...rest });
 };
 
 module.exports.renderToCSS = renderToCSSPromise;
