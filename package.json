@@ -17,11 +17,10 @@
   ],
   "dependencies": {
     "app-root-path": "^3.1.0",
-    "css-to-react-native-transform": "^2.0.0",
-    "semver": "^7.3.8"
+    "css-to-react-native-transform": "^2.0.0"
   },
   "peerDependencies": {
-    "react-native": ">=0.45.0",
+    "react-native": ">=0.59.0",
     "sass": "^1.43.2"
   },
   "devDependencies": {
@@ -32,8 +31,8 @@
     "eslint-plugin-promise": "^5.1.0",
     "husky": "^8.0.3",
     "lint-staged": "^15.2.2",
-    "np": "^10.0.0",
-    "prettier": "^3.0.0"
+    "np": "^10.0.5",
+    "prettier": "^3.2.5"
   },
   "lint-staged": {
     "*.js": [
