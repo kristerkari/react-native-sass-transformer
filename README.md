@@ -103,7 +103,7 @@ module.exports = (() => {
   };
   config.resolver = {
     ...resolver,
-    sourceExts: [...sourceExts, "scss", "sass"]
+    sourceExts: [...resolver.sourceExts, "scss", "sass"]
   };
 
   return config;
