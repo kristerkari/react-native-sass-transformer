@@ -745,18 +745,18 @@ css-mediaquery@^0.1.2:
   resolved "https://registry.yarnpkg.com/css-mediaquery/-/css-mediaquery-0.1.2.tgz#6a2c37344928618631c54bd33cedd301da18bea0"
 
 css-to-react-native-transform@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/css-to-react-native-transform/-/css-to-react-native-transform-2.0.0.tgz#0ea9ed11caae2b9ec6b4e545fd2789700e552fbd"
-  integrity sha512-lsKKZxzuY1d/t2twJ9K2tUIb2ThMstFC/8QsQNR1KjZKnpBqswEW9/kVEWAWdfx+a6jcURKxssiQp94cFakPag==
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/css-to-react-native-transform/-/css-to-react-native-transform-2.1.0.tgz#bb6bbfe2bc48ee0ff74038d6ec3ac5f446d85cf6"
+  integrity sha512-A7itX35B6Z4SvLIKOdL3iIWiLSrkdEXBfmK6198VqpVfsqlPJtW2gQpmubOrJjtjZV/Nsgy7dHvVPHkRG2K5wA==
   dependencies:
     css "^3.0.0"
     css-mediaquery "^0.1.2"
-    css-to-react-native "^3.0.0"
+    css-to-react-native "^3.2.0"
 
-css-to-react-native@^3.0.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/css-to-react-native/-/css-to-react-native-3.1.0.tgz#e783474149997608986afcff614405714a8fe1ac"
-  integrity sha512-AryfkFA29b4I3vG7N4kxFboq15DxwSXzhXM37XNEjwJMgjYIc8BcqfiprpAqX0zadI5PMByEIwAMzXxk5Vcc4g==
+css-to-react-native@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/css-to-react-native/-/css-to-react-native-3.2.0.tgz#cdd8099f71024e149e4f6fe17a7d46ecd55f1e32"
+  integrity sha512-e8RKaLXMOFii+02mOlqwjbD00KSEKqblnpO9e++1aXS1fPQOpS1YoqdVHBqPjHNoxeF2mimzVqawm2KCbEdtHQ==
   dependencies:
     camelize "^1.0.0"
     css-color-keywords "^1.0.0"
